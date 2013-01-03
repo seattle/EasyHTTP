@@ -10,7 +10,7 @@ module EasyHTTP
 
   PROGRAM_NAME     = "EasyHTTP"
   PROGRAM_NAME_LOW = PROGRAM_NAME.downcase
-  PROGRAM_DESC     = "Interface for Net::HTTP"
+  PROGRAM_DESC     = "Simple wrapper for Net:HTTP"
   VERSION = [Version::MAJOR, Version::MINOR, Version::TINY].join('.')
   AUTHOR = "Tomas J. Sahagun"
   AUTHOR_EMAIL = "113.seattle@gmail.com"

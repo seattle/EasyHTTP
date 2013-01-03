@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.description = EasyHTTP::DESCRIPTION
   spec.authors     = [EasyHTTP::AUTHOR]
   spec.email       = EasyHTTP::AUTHOR_EMAIL
-  spec.homepage    = 'http://gems.grupomabis/easy_http'
+  spec.homepage    = 'https://github.com/seattle/EasyHTTP'
 
 
   spec.add_dependency "nokogiri",       ">= 1.5.5"
