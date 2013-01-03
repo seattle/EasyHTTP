@@ -46,6 +46,10 @@ module EasyHTTP
 
       @uri = URI(@base_url) # Parse URI Object
 
+      create_ua
+    end
+
+    def create_ua
       # Create the Session Object
       @http = Net::HTTP.new(uri.host, uri.port)
 
@@ -125,6 +129,15 @@ module EasyHTTP
           return Response.new "#{base_url}#{path}", response, @default_response_charset
         end
       end
+    end
+
+    def marshal_dump
+      [ @base_url, @default_headers, @uri, @options, @cookies , @username, @password, @default_response_charset ]
+    end
+
+    def marshal_load data
+      @base_url, @default_headers, @uri, @options, @cookies , @username, @password, @default_response_charset = data
+      create_ua
     end
 
     private
