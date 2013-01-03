@@ -12,7 +12,8 @@ module EasyHTTP
       @status = response.code.to_i
       @status_message = response.message
 
-      @body = response.body.encode default_charset
+      @body = response.body
+      @body = @body.encode default_charset if String.method_defined? :encode
 
       @headers = {}
       response.each_header { |k, v| @headers[k] = v}
