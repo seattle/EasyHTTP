@@ -156,13 +156,13 @@ module EasyHTTP
         # Store the cookies
         parsed_cookies.each do |k,v|
           cookie_parts  = v.to_s.split(";")[0].split("=")
-          @cookies[cookie_parts[0]] = cookie_parts[1]
+          @cookies[cookie_parts[0]] = URI.unescape(cookie_parts[1])
         end
       end
     end
 
     def format_cookies
-      (@cookies.collect{ |k,v| "#{k}=#{URI.unescape(v)}"}).join("; ")
+      (@cookies.collect{ |k,v| "#{k}=#{v}"}).join("; ")
     end
   end
 end
