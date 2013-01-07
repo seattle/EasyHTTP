@@ -156,7 +156,7 @@ module EasyHTTP
         # Store the cookies
         parsed_cookies.each do |k,v|
           cookie_parts  = v.to_s.split(";")[0].split("=")
-          @cookies[cookie_parts[0]] = URI.unescape(cookie_parts[1])
+          @cookies[k] = URI.unescape(cookie_parts[1]) unless cookie_parts[1].nil?
         end
       end
     end

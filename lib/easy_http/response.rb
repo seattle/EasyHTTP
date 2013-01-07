@@ -21,7 +21,7 @@ module EasyHTTP
       end
 
       @headers = {}
-      response.each_header { |k, v| @headers[k] = convert_to_default_encoding! v }
+      response.each_header { |k, v| @headers[k] = v }
 
       self
     end
