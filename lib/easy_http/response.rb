@@ -3,7 +3,18 @@
 module EasyHTTP
   class Response
 
-    attr_reader :url, :status, :status_message, :body, :headers, :charset
+    # Requested URL
+    attr_reader :url
+    # Response status code
+    attr_reader :status
+    # Response status text
+    attr_reader :status_message
+    # Response body
+    attr_reader :body
+    # Parsed response headers
+    attr_reader :headers
+    # Response charset
+    attr_reader :charset
 
     def initialize url, response, default_charset = nil
       default_charset = "ASCII-8BIT" unless default_charset
