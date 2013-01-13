@@ -17,7 +17,8 @@ session = EasyHTTP::Session.new "https://www.google.com/", {
   :password => 'http_auth_pass',
   :read_timeout => 1000,
   :debug => $sdtout,
-  :insecure => false
+  :insecure => false,
+  :max_redirs => 10
   }
 ```
 
