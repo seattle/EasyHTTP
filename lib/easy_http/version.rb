@@ -5,7 +5,7 @@ module EasyHTTP
   module Version
     MAJOR = 0
     MINOR = 1
-    TINY  = 2
+    TINY  = 5
   end
 
   PROGRAM_NAME     = "EasyHTTP"

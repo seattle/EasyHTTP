@@ -4,7 +4,7 @@ require "./lib/easy_http/version"
 Gem::Specification.new do |spec|
   spec.name        = 'easy_http'
   spec.version     = EasyHTTP::VERSION
-  spec.date        = '2013-01-03'
+  spec.date        = '2013-01-13'
   spec.summary     = EasyHTTP::PROGRAM_DESC
   spec.description = EasyHTTP::DESCRIPTION
   spec.authors     = [EasyHTTP::AUTHOR]
@@ -12,9 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://github.com/seattle/EasyHTTP'
 
 
-  spec.add_dependency "nokogiri",       ">= 1.5.5"
-  #spec.add_dependency "uri"
-  #spec.add_dependency "cgi"
+  #spec.add_dependency "nokogiri",       ">= 1.5.5"
 
   spec.add_development_dependency "rake", "~> 0.9.2"
   spec.files = Dir.glob %w{
