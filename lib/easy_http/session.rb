@@ -26,6 +26,9 @@ module EasyHTTP
     # Default request charset
     attr_accessor :default_response_charset
 
+    # Control redirects
+    attr_accessor :max_redirs
+
     def initialize url, options = {}
       @cookies = nil # Initialize cookies store to nil
       @default_headers = {
@@ -45,6 +48,8 @@ module EasyHTTP
       @password = options[:password] unless options[:password].nil?
 
       @uri = URI(@base_url) # Parse URI Object
+
+      @max_redirs = options[:max_redirs] || 5
 
       create_ua
     end
@@ -83,7 +88,7 @@ module EasyHTTP
     end
 
     # Send an HTTP request
-    def send_request action, path, headers, request_options = {}
+    def send_request action, path, headers, request_options = {}, redir = 0
       # Parse path to prevent errors
       path = "/#{path}" unless path.match(/^"\/"/)
 
@@ -125,8 +130,23 @@ module EasyHTTP
         unless response.nil?
           # Store cookies if have enabled store it
           handle_cookies response unless @cookies.nil?
-          # Generate and return response
-          return Response.new "#{base_url}#{path}", response, @default_response_charset
+
+          # Generate and return response or follow redir
+          case response
+          when Net::HTTPSuccess
+            return Response.new "#{base_url}#{path}", response, @default_response_charset
+          when Net::HTTPRedirection
+            if redir == @max_redirs
+              return Response.new "#{base_url}#{path}", response, @default_response_charset
+            else
+              puts "redir (#{redir}) from #{path} to #{response['location']}"
+              return send_request action, URI.parse(response['location']).path, headers, request_options, redir + 1
+
+            end
+          else
+            return Response.new "#{base_url}#{path}", response, @default_response_charset
+          end
+
         end
       end
     end
